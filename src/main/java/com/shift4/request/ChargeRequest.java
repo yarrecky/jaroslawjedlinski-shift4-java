@@ -27,6 +27,7 @@ public class ChargeRequest {
 	private BillingRequest billing;
 	private ThreeDSecureRequest threeDSecure;
 	private String merchantAccountId;
+	private External external;
 	private Map<String, String> metadata;
 
 	@JsonIgnore
@@ -89,6 +90,10 @@ public class ChargeRequest {
 
 	public String getMerchantAccountId() {
 		return merchantAccountId;
+	}
+
+	public External getExternal() {
+		return external;
 	}
 
 	public Map<String, String> getMetadata() {
@@ -164,6 +169,11 @@ public class ChargeRequest {
 		return this;
 	}
 
+	public ChargeRequest external(External external) {
+		this.external = external;
+		return this;
+	}
+
 	public ChargeRequest metadata(Map<String, String> metadata) {
 		this.metadata = metadata;
 		return this;
@@ -178,5 +188,38 @@ public class ChargeRequest {
 	public ChargeRequest set(String name, Object value) {
 		other.put(name, value);
 		return this;
+	}
+
+	public static class External {
+		private String schemeTransactionId;
+		private String vendorReference;
+		private ExternalNetworkTokenRequest networkToken;
+
+		public String getSchemeTransactionId() {
+			return schemeTransactionId;
+		}
+
+		public External schemeTransactionId(String schemeTransactionId) {
+			this.schemeTransactionId = schemeTransactionId;
+			return this;
+		}
+
+		public String getVendorReference() {
+			return vendorReference;
+		}
+
+		public External vendorReference(String vendorReference) {
+			this.vendorReference = vendorReference;
+			return this;
+		}
+		
+		public ExternalNetworkTokenRequest getNetworkToken() {
+			return networkToken;
+		}
+
+		public External networkToken(ExternalNetworkTokenRequest networkToken) {
+			this.networkToken = networkToken;
+			return this;
+		}
 	}
 }
