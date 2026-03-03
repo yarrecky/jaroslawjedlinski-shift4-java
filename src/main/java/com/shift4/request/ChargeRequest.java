@@ -191,8 +191,28 @@ public class ChargeRequest {
 	}
 
 	public static class External {
+		private String schemeTransactionId;
+		private String vendorReference;
 		private ExternalNetworkTokenRequest networkToken;
 
+		public String getSchemeTransactionId() {
+			return schemeTransactionId;
+		}
+
+		public External schemeTransactionId(String schemeTransactionId) {
+			this.schemeTransactionId = schemeTransactionId;
+			return this;
+		}
+
+		public String getVendorReference() {
+			return vendorReference;
+		}
+
+		public External vendorReference(String vendorReference) {
+			this.vendorReference = vendorReference;
+			return this;
+		}
+		
 		public ExternalNetworkTokenRequest getNetworkToken() {
 			return networkToken;
 		}
