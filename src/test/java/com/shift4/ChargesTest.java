@@ -152,4 +152,33 @@ class ChargesTest extends AbstractShift4GatewayTest {
         // then
         assertThat(charge.getType()).isEqualTo(ChargeType.CUSTOMER_INITIATED);
     }
+
+    @Test
+    void shouldReturnSchemeTransactionIdInChargeResponse() {
+        // given
+        ChargeRequest request = charge()
+                .card(successCard())
+                .external(new ChargeRequest.External()
+                        .schemeTransactionId("external-scheme-tx-id"));
+        // when
+        Charge charge = gateway.createCharge(request);
+        // then
+        assertThat(charge.getExternal()).isNotNull();
+        assertThat(charge.getExternal().getSchemeTransactionId()).isNotNull();
+    }
+
+    @Test
+    void shouldReturnVendorReferenceInChargeResponse() {
+        // given
+        String vendorReference = "external-vendor-ref";
+        ChargeRequest request = charge()
+                .card(successCard())
+                .external(new ChargeRequest.External()
+                        .vendorReference(vendorReference));
+        // when
+        Charge charge = gateway.createCharge(request);
+        // then
+        assertThat(charge.getExternal()).isNotNull();
+        assertThat(charge.getExternal().getVendorReference()).isEqualTo(vendorReference);
+    }
 }
